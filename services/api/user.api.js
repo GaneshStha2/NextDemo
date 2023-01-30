@@ -1,6 +1,4 @@
-import axios from "axios";
+import { BASEURL } from "@/constants/env";
 
-
-export const registerUser = async (data) => {
-  return await axios.post(BASEURL+"/",data);
-};
+export const registerUserUrl = BASEURL+"/api/SignUpApi/SignUp";
+export const userLoginUrl = BASEURL+"/api/SignUpApi/Login";
