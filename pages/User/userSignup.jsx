@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import TextInput from "@/components/Common/TextInput";
-import {registerUser,} from "../services/userServices";
+import { registerUser } from "../../services/User/userServices"
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -11,13 +11,16 @@ export default function Home() {
     address:"",
   });
   const router=useRouter();
-
+  const [errorMessage, setErrorMessage] = useState('');
   const onRegister = () => {
-   // console.log(user);
-   //router.push('/login');
+  if(user.password==""){
+    setErrorMessage("Please enter password");
+    return;
+  }
+
   registerUser(user)
       .then(() => {
-        router.push("/login")
+        router.push("/User/login")
       })
       .catch(() => {});
    };
@@ -105,6 +108,9 @@ export default function Home() {
                                 setUser({ ...user, password: e.target.value })
                               }
                             />
+                                          {errorMessage && (
+  <p className="error" style={{color:"red"}}> {errorMessage} </p>
+)}
                           </div>
                         </div>
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { userLoginPost } from "../services/userServices";
+import { userLoginPost } from "../../services/User/userServices"
 export default function login() {
   const [userLogin, setUserLogin] = useState({
     email: "",
@@ -14,7 +14,7 @@ export default function login() {
       .then((result) => {
        
       if(result.data.data==true){
-        router.push("/dashboard");
+        router.push("/User/dashboard");
       }
       else {
         setErrorMessage(result.data.message);
@@ -23,7 +23,7 @@ export default function login() {
       .catch(() => {});
   };
   const onRegister = () => {
-    router.push("/userSignup");
+    router.push("/User/userSignup");
   };
   return (
     <section className="vh-100">
